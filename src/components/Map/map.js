@@ -53,7 +53,6 @@ class Map extends Component {
     ReactDOM.render(<ClusterList list={list} />, document.getElementById("clusterList"));
   }
 
-
   componentDidMount() {
     const {mapCenter, coordinates} = this.props.search;
     const map = new mapboxgl.Map({
@@ -279,6 +278,11 @@ class Map extends Component {
         this.addClusterList(clusterLngLat, childList);
       });
     });
+
+    this.map.on('mouseout', clusterName, e => {
+      console.log('event', e)
+      clusterListMarker.remove()
+    })
   };
 
 
